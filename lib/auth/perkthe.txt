@@ -1,0 +1,117 @@
+@startuml
+title Aplikacioni Kuizi - Diagram i Sekuences
+
+actor Përdoruesi
+participant Aplikacioni
+participant Firebase
+participant FirebaseDB
+participant GoogleMapsAPI
+
+Përdoruesi -> Aplikacioni: Hap Aplikacionin e Quizit
+activate Aplikacioni
+
+Aplikacioni -> Përdoruesi: Shfaq Faqen e Kycjes/Regjistrimit
+
+alt Përdoruesi zgjedh Regjistrimin
+    Përdoruesi -> Aplikacioni: Jep Detajet e Regjistrimit
+    activate Aplikacioni
+    Aplikacioni -> Aplikacioni: Validimi i të dhënave të Regjistrimit
+
+    alt Të dhënat e regjistrimit janë valide
+        Aplikacioni -> Firebase: Regjistro Përdoruesin
+        activate Firebase
+        Firebase --> Aplikacioni: Sukses në Regjistrim të Përdoruesit
+        deactivate Firebase
+
+        Aplikacioni -> ShërbimiEmail: Dërgo Emailin e Verifikimit
+        activate ShërbimiEmail
+        ShërbimiEmail -> Aplikacioni: Emaili është Dërguar
+        deactivate ShërbimiEmail
+
+        alt Emaili është dërguar me sukses
+            Përdoruesi -> Aplikacioni: Verifikon Emailin në Shërbimin e Postës së tij
+            activate Aplikacioni
+            Aplikacioni -> Aplikacioni: Validimi i Verifikimit
+
+            alt Verifikimi është i suksesshëm
+                Aplikacioni -> Firebase: Ruaj të Dhënat e Përdoruesit
+                activate Firebase
+                Firebase --> Aplikacioni: Të dhënat e Përdoruesit janë Ruajtur
+                deactivate Firebase
+
+                Aplikacioni -> Aplikacioni: Kyçja Automatike
+                
+            else
+                Aplikacioni -> Përdoruesi: Shfaq Mesazh Gabimi: Verifikimi dështoi
+                deactivate Aplikacioni
+            end
+        else
+            Aplikacioni -> Përdoruesi: Shfaq Mesazh Gabimi: Dështoi dërgimi i Emailit
+            deactivate Aplikacioni
+        end
+    else
+        Aplikacioni -> Përdoruesi: Shfaq Mesazh Gabimi: Të dhënat e regjistrimit janë të pavlefshme
+        deactivate Aplikacioni
+    end
+else
+    Përdoruesi -> Aplikacioni: Jep Kredencialet e Kycjes
+    activate Aplikacioni
+    Aplikacioni -> Aplikacioni: Validimi i të dhënave të Kycjes
+
+    alt Kredencialet e kycjes janë valide
+        Aplikacioni -> Firebase: Verifikon Përdoruesin
+        activate Firebase
+        Firebase --> Aplikacioni: Sukses në Verifikimin e Përdoruesit
+        deactivate Firebase
+
+        Aplikacioni -> Aplikacioni: Kyçja Automatike
+        deactivate Aplikacioni
+    else
+        Aplikacioni -> Përdoruesi: Shfaq Mesazh Gabimi: Kredencialet e kycjes janë të pavlefshme
+        deactivate Aplikacioni
+    end
+end
+
+Përdoruesi -> Aplikacioni: Shfaq Faqen Kryesore
+activate Aplikacioni
+Aplikacioni -> Përdoruesi: Shfaq Kuizet dhe Faqen e Profilit
+deactivate Aplikacioni
+
+alt Përdoruesi zgjedh Kuizin
+    Përdoruesi -> Aplikacioni: Kliko në Kuiz
+    activate Aplikacioni
+    Aplikacioni -> Firebase: Merr Pyetjet e Kuizit
+    activate Firebase
+    Firebase --> Aplikacioni: Pyetjet e Kuizit
+    deactivate Firebase
+
+    loop përderisa ka pyetje
+        Përdoruesi -> Aplikacioni: Përgjigju Pyetjes
+        activate Aplikacioni
+        Aplikacioni -> Aplikacioni: Validimi i Përgjigjes
+        Aplikacioni -> FirebaseDB: Kontrollo Përgjigjen
+        activate FirebaseDB
+        FirebaseDB --> Aplikacioni: Rezultati i Përgjigjes
+        deactivate FirebaseDB
+    end
+
+    Aplikacioni -> Përdoruesi: Shfaq Rezultatin e Kuizit
+    deactivate Aplikacioni
+else
+    Përdoruesi -> Aplikacioni: Kliko në Profil
+    activate Aplikacioni
+    Aplikacioni -> Firebase: Merr të Dhënat e Përdoruesit
+    activate Firebase
+    Firebase --> Aplikacioni: Të Dhënat e Përdoruesit
+    deactivate Firebase
+    Aplikacioni -> GoogleMapsAPI: Merr Lokacionin e Përdoruesit
+    activate GoogleMapsAPI
+    GoogleMapsAPI --> Aplikacioni: Lokacioni i Përdoruesit
+    deactivate GoogleMapsAPI
+
+    Aplikacioni -> Përdoruesi: Shfaq Profilin e Përdoruesit dhe Hartën
+    deactivate Aplikacioni
+end
+
+deactivate Aplikacioni
+@enduml

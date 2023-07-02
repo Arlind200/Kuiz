@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "435846162970",
+    "project_id": "kuiz-29083",
+    "storage_bucket": "kuiz-29083.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435846162970:android:a50353c2c4873936403fa3",
+        "android_client_info": {
+          "package_name": "com.example.kuizi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435846162970-dc2sgejhpl00agsno61k5od92a5jnuta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHeFSY8YGKmc7KNNqJMPfV7MHLJVIWZgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435846162970-dc2sgejhpl00agsno61k5od92a5jnuta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,98 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run --machine
+
+## exception
+
+StateError: Bad state: Stream has already been listened to.
+
+```
+#0      _StreamController._subscribe (dart:async/stream_controller.dart:676:7)
+#1      _ControllerStream._createSubscription (dart:async/stream_controller.dart:827:19)
+#2      _StreamImpl.listen (dart:async/stream_impl.dart:471:9)
+#3      _Socket.listen (dart:io-patch/socket_patch.dart:2214:31)
+#4      _StdStream.listen (dart:io/stdio.dart:22:20)
+#5      new DaemonInputStreamConverter.<anonymous closure> (package:flutter_tools/src/daemon.dart:67:70)
+#6      _runGuarded (dart:async/stream_controller.dart:814:24)
+#7      _StreamController._subscribe.<anonymous closure> (dart:async/stream_controller.dart:692:7)
+#8      _BufferingStreamSubscription._guardCallback (dart:async/stream_impl.dart:415:13)
+#9      _StreamController._subscribe (dart:async/stream_controller.dart:691:18)
+#10     _ControllerStream._createSubscription (dart:async/stream_controller.dart:827:19)
+#11     _StreamImpl.listen (dart:async/stream_impl.dart:471:9)
+#12     new DaemonConnection (package:flutter_tools/src/daemon.dart:246:54)
+#13     RunCommand.createMachineDaemon (package:flutter_tools/src/commands/run.dart:576:7)
+#14     RunCommand.runCommand (package:flutter_tools/src/commands/run.dart:600:29)
+<asynchronous suspension>
+#15     FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1257:27)
+<asynchronous suspension>
+#16     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:150:19)
+<asynchronous suspension>
+#17     CommandRunner.runCommand (package:args/command_runner.dart:209:13)
+<asynchronous suspension>
+#18     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:283:9)
+<asynchronous suspension>
+#19     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:150:19)
+<asynchronous suspension>
+#20     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:229:5)
+<asynchronous suspension>
+#21     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:64:9)
+<asynchronous suspension>
+#22     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:150:19)
+<asynchronous suspension>
+#23     main (package:flutter_tools/executable.dart:91:3)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.7.9, on Microsoft Windows [Version 10.0.19045.2728], locale en-AS)
+    [32m•[39m Flutter version 3.7.9 on channel stable at C:\src\flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 62bd79521d (10 days ago), 2023-03-30 10:59:36 -0700
+    [32m•[39m Engine revision ec975089ac
+    [32m•[39m Dart version 2.19.6
+    [32m•[39m DevTools version 2.20.1
+
+[32m[✓][39m Windows Version (Installed version of Windows is version 10 or higher)
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 30.0.3)
+    [32m•[39m Android SDK at C:\Users\HP\AppData\Local\Android\sdk
+    [32m•[39m Platform android-33, build-tools 30.0.3
+    [32m•[39m Java binary at: C:\Program Files\Android\Android Studio\jbr\bin\java
+    [32m•[39m Java version OpenJDK Runtime Environment (build 11.0.15+0-b2043.56-9505619)
+    [32m•[39m All Android licenses accepted.
+
+[32m[✓][39m Chrome - develop for the web
+    [32m•[39m Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[32m[✓][39m Visual Studio - develop for Windows (Visual Studio Professional 2022 17.1.2)
+    [32m•[39m Visual Studio at C:\Program Files\Microsoft Visual Studio\2022\Professional
+    [32m•[39m Visual Studio Professional 2022 version 17.1.32319.34
+    [32m•[39m Windows 10 SDK version 10.0.19041.0
+
+[32m[✓][39m Android Studio (version 2022.1)
+    [32m•[39m Android Studio at C:\Program Files\Android\Android Studio
+    [32m•[39m Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    [32m•[39m Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    [32m•[39m Java version OpenJDK Runtime Environment (build 11.0.15+0-b2043.56-9505619)
+
+[32m[✓][39m VS Code (version 1.77.1)
+    [32m•[39m VS Code at C:\Users\HP\AppData\Local\Programs\Microsoft VS Code
+    [32m•[39m Flutter extension version 3.62.0
+
+[32m[✓][39m Connected device (3 available)
+    [32m•[39m Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.19045.2728]
+    [32m•[39m Chrome (web)      • chrome  • web-javascript • Google Chrome 111.0.5563.147
+    [32m•[39m Edge (web)        • edge    • web-javascript • Microsoft Edge 110.0.1587.57
+
+[32m[✓][39m HTTP Host Availability
+    [32m•[39m All required HTTP hosts are available
+
+[32m•[39m No issues found!
+```

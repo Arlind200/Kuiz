@@ -1,1 +1,3 @@
-# Kuiz
+# kuizi
+
+A new Flutter project.
