@@ -1,0 +1,12 @@
+element.style{
+position: fixed;
+inset: 0px;
+overflow: hidden;
+padding: 0px;
+margin: 0px;
+user-select: none;
+touch-action: none;
+resize: none;
+max-height: 1900px;
+max-width: 500px;
+}
